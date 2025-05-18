@@ -30,7 +30,7 @@ Este projeto é um reprodutor de áudio MP3 simples, construído com React e Vit
 1. Clonar o repositório:
 
    ```bash
-   git clone <URL-do-repositório>
+   git clone https://github.com/dayvisonmsilva/my-audio-player.git
    cd my-audio-player
    ```
 2. Instalar dependências:
