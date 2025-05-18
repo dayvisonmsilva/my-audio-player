@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function AudioPlayer() {
   const audioRef = useRef(null);
@@ -76,47 +77,80 @@ export default function AudioPlayer() {
   };
 
   return (
-    <div className="p-4 space-y-4 border rounded shadow">
-      <audio
-        ref={audioRef}
-        src="/audio/sample.mp3"
-        preload="auto"
-      />
-      <div className="space-x-2">
-        <button onClick={handlePlay} disabled={playing}>Play</button>
-        <button onClick={handlePause} disabled={!playing}>Pause</button>
-        <button onClick={handleStop}>Stop</button>
+    <div className="container my-5">
+      <div className="card shadow-sm">
+        <div className="card-body">
+          <h5 className="card-title text-center">Audio Player</h5>
+          <audio ref={audioRef} src="/audio/sample.mp3" preload="auto" />
+
+          <div className="d-flex justify-content-center my-3">            
+            <button
+              className="btn btn-success mx-2"
+              onClick={handlePlay}
+              disabled={playing}
+            >
+              Play
+            </button>
+            <button
+              className="btn btn-warning mx-2"
+              onClick={handlePause}
+              disabled={!playing}
+            >
+              Pause
+            </button>
+            <button
+              className="btn btn-danger mx-2"
+              onClick={handleStop}
+            >
+              Stop
+            </button>
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="volumeRange" className="form-label">Volume: {volume}</label>
+            <input
+              id="volumeRange"
+              type="range"
+              className="form-range"
+              min="0"
+              max="100"
+              value={volume}
+              onChange={handleVolume}
+            />
+          </div>
+
+          <div className="text-center mb-3">
+            <button className="btn btn-outline-primary" onClick={toggleFilter}>
+              {filterOn ? 'Remover Filtro' : 'Aplicar Filtro LP'}
+            </button>
+          </div>
+
+          <svg width="100%" height="150" className="mt-4">
+            <defs>
+              <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L6,3 z" fill="#333"/>
+              </marker>
+            </defs>
+            <circle cx="50" cy="75" r="25" fill="#f8f9fa" stroke="#6c757d" />
+            <text x="50" y="75" textAnchor="middle" dy="5" className="small">Source</text>
+
+            <circle cx="200" cy="75" r="25" fill="#f8f9fa" stroke="#6c757d" />
+            <text x="200" y="75" textAnchor="middle" dy="5" className="small">Gain</text>
+
+            <circle
+              cx="350"
+              cy="75"
+              r="25"
+              fill={filterOn ? '#d1e7dd' : '#f8d7da'}
+              stroke="#6c757d"
+            />
+            <text x="350" y="75" textAnchor="middle" dy="5" className="small">Filter</text>
+
+            <line x1="75" y1="75" x2="175" y2="75" stroke="#6c757d" markerEnd="url(#arrow)" />
+            <line x1="225" y1="75" x2="325" y2="75" stroke="#6c757d" markerEnd="url(#arrow)" />
+          </svg>
+        </div>
       </div>
-      <div>
-        <label>Volume: {volume}</label>
-        <input
-          type="range"
-          min="0"
-          max="100"
-          value={volume}
-          onChange={handleVolume}
-        />
-      </div>
-      <div>
-        <button onClick={toggleFilter}>
-          {filterOn ? 'Remover Filtro' : 'Aplicar Filtro LP'}
-        </button>
-      </div>
-      <svg width="300" height="120" className="mt-4">
-        <defs>
-          <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-            <path d="M0,0 L0,6 L6,3 z" fill="#333"/>
-          </marker>
-        </defs>
-        <circle cx="50" cy="60" r="20" fill="#ddd" />
-        <text x="50" y="60" textAnchor="middle" dy="5">Source</text>
-        <circle cx="150" cy="60" r="20" fill="#ddd" />
-        <text x="150" y="60" textAnchor="middle" dy="5">Gain</text>
-        <circle cx="250" cy="60" r="20" fill={filterOn ? '#afa' : '#faa'} />
-        <text x="250" y="60" textAnchor="middle" dy="5">Filter</text>
-        <line x1="70" y1="60" x2="130" y2="60" stroke="#333" markerEnd="url(#arrow)" />
-        <line x1="170" y1="60" x2="230" y2="60" stroke="#333" markerEnd="url(#arrow)" />
-      </svg>
     </div>
   );
 }
