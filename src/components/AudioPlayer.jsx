@@ -118,30 +118,15 @@ export default function AudioPlayer() {
           </div>
 
           {/* Visualização do grafo de áudio */}
-          <svg width="100%" height="150" className="mt-4">
-            <defs>
-              <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-                <path d="M0,0 L0,6 L6,3 z" fill="#333" />
-              </marker>
-            </defs>
-            <circle cx="50" cy="75" r="25" fill="#f8f9fa" stroke="#6c757d" />
-            <text x="50" y="75" textAnchor="middle" dy="5" className="small">Source</text>
-
-            <circle cx="200" cy="75" r="25" fill="#f8f9fa" stroke="#6c757d" />
-            <text x="200" y="75" textAnchor="middle" dy="5" className="small">Gain</text>
-
-            <circle
-              cx="350"
-              cy="75"
-              r="25"
-              fill={filterOn ? '#d1e7dd' : '#f8d7da'}
-              stroke="#6c757d"
-            />
-            <text x="350" y="75" textAnchor="middle" dy="5" className="small">Filter</text>
-
-            <line x1="75" y1="75" x2="175" y2="75" stroke="#6c757d" markerEnd="url(#arrow)" />
-            <line x1="225" y1="75" x2="325" y2="75" stroke="#6c757d" markerEnd="url(#arrow)" />
-          </svg>
+          <div>
+            <img src="graph/AudioContextGraph.png" alt="Grafo de audiocontext" width={"50%"} height={"50%"} style={{alignItems: "center"}}/>
+          </div>
+          <ul style={{listStyleType: "none"}}>
+            Discentes:
+            <li>Dayvison Eryc de Moura Silva</li>
+            <li>Lidiana Costa de Souza</li>
+            <li>Lucas Mairon Oliveira Camilo</li>
+          </ul>
         </div>
       </div>
     </div>
